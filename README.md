@@ -10,7 +10,7 @@ yarn install
 cd public
 rm -rf custom-resources
 git clone https://github.com/garronej/onyxia-LS3 custom-resources
-node custom-resources/scripts/setup-env-local-yaml.mjs
+cp custom-resources/.env.local.yaml ..
 cd ..
 yarn dev
 ```
@@ -20,5 +20,5 @@ yarn dev
 ```bash
 git clone https://github.com/garronej/onyxia-LS3 
 cd onyxia-LS3
-zip -r onyxia-ls3.zip . -x "./README.md" "./env.local.yaml"
+zip -r onyxia-LS3.zip . -x "./README.md" "./env.local.yaml"
 ```
