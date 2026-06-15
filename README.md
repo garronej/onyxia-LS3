@@ -7,7 +7,6 @@ git clone https://github.com/InseeFrLab/onyxia
 cd onyxia
 cd web
 yarn install
-rm -rf public/custom-resources
 git clone https://github.com/garronej/onyxia-LS3 public/custom-resources
 cp public/custom-resources/.env.local.yaml . && yarn dev
 ```
