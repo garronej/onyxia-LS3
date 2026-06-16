@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import type { OnyxiaCtx } from "../OnyxiaCtx";
 import type { GitDialogOpenEvent } from "./HomeLS3GitDialog";
 import { createHomeLS3GitDialog } from "./HomeLS3GitDialog";
@@ -12,7 +11,7 @@ type ServiceName = (typeof serviceNames)[number];
 
 export async function createHomeLS3(
     ctx: OnyxiaCtx
-): Promise<{ HomeLS3: () => ReactNode }> {
+) {
     const [
         React,
         { tss },
