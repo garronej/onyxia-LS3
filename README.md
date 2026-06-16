@@ -1,31 +1,81 @@
 # onyxia-LS3
 
-## Dev
+Custom LS3 resources for Onyxia.
+
+This project is authored in TypeScript/TSX and builds to the plain custom-resource
+format consumed by Onyxia:
+
+```txt
+docs/
+assets/
+js/
+  index.mjs
+```
+
+Runtime dependencies are still provided by Onyxia through `ctx.import(...)`. The
+build step only compiles the local TypeScript/TSX source and bundles the local
+custom-resource code.
+
+## Development
+
+Clone this repository inside the Onyxia web directory, next to `src/` and
+`public/`:
 
 ```bash
 git clone https://github.com/InseeFrLab/onyxia
-cd onyxia
-cd web
-yarn install
-git clone https://github.com/garronej/onyxia-LS3 public/custom-resources
-cp public/custom-resources/.env.local.yaml . && yarn dev
+cd onyxia/web
+yarn
+git clone https://github.com/garronej/onyxia-LS3
+cd onyxia-LS3
+npm install
+npm run dev
 ```
 
-## Building for production
+`npm run dev`:
+
+- copies `onyxia-LS3/.env.local.yaml` to `web/.env.local.yaml`;
+- removes and recreates `web/public/custom-resources`;
+- builds `custom-resources/docs`, `custom-resources/assets`, and `src/main.ts`
+  into `web/public/custom-resources`;
+- watches source/static files and rebuilds on changes;
+- starts Onyxia with `npm run dev` from `web/`.
+
+The dev command intentionally refuses to run if this repository itself is located
+at `web/public/custom-resources`, because that directory is deleted before each
+dev build.
+
+## Production Build
 
 ```bash
-git clone https://github.com/garronej/onyxia-LS3 
+git clone https://github.com/InseeFrLab/onyxia
+cd onyxia/web
+yarn
+git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
-zip -r onyxia-LS3.zip . -x "./README.md" "./env.local.yaml" "./Onyxia.d.ts" "./jsconfig.json" ".gitignore"
-
+npm install
+npm run build
 ```
 
-Then upload `onyxia-LS3.zip` in some CDN so you have an url to download it. 
-In the `values.yaml` should be set the values of `./.env.local.yaml` and additionally:
+The build creates:
+
+```txt
+onyxia-LS3.zip
+```
+
+The zip contains:
+
+```txt
+docs/
+assets/
+js/
+  index.mjs
+```
+
+Upload `onyxia-LS3.zip` to a CDN and configure Onyxia with:
 
 ```yaml
 onyxia:
-  web:
-    env:
-      CUSTOM_RESOURCES: "<https url to onyxia-LS3.zip>"
+    web:
+        env:
+            CUSTOM_RESOURCES: "<https url to onyxia-LS3.zip>"
 ```
