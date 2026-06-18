@@ -465,10 +465,7 @@ export async function createHomeLS3LaunchDialog(
 
         const { cx, classes } = useStyles_BodyGitlab();
 
-        const { githubPersonalAccessToken } = useCoreState(
-            "userConfigs",
-            "userConfigs"
-        );
+        const { githubPersonalAccessToken } = useCoreState("userConfigs", "userConfigs");
 
         return (
             <div className={cx(classes.root, className)}>
@@ -798,8 +795,16 @@ export async function createHomeLS3LaunchDialog(
                     Renseignez votre répertoire GitLab
                 </Text>
                 <Text className={classes.description} typo="body 1">
-                    Indique l’URL du projet GitLab à initialiser automatiquement dans{" "}
-                    {serviceName}.
+                    Indique l’URL du projet GitLab à initialiser automatiquement dans xxxx{" "}
+                    {serviceName}.{" "}
+                    <Link
+                        {...routes.document({
+                            source: `${PUBLIC_URL}/custom-resources/docs/how-to-get-gitlab-repo-url.md`
+                        }).link}
+                        target="_blank"
+                    >
+                        Voir la documentation
+                    </Link>
                 </Text>
                 <TextField
                     className={classes.input}
