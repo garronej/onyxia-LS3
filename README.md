@@ -30,8 +30,6 @@ npm run dev
 > NOTE: This repo comes with CI Action for GitHub Action and GitLab CI that 
 > build the plugin and publish it an an artifact.
 
-<details>
-<title>Building locally</title>
 ```bash
 git clone https://github.com/InseeFrLab/onyxia
 cd onyxia
@@ -45,7 +43,6 @@ cd onyxia-LS3
 npm install
 npm run build
 ```
-</details>
 
 The build creates:
 
