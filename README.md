@@ -1,29 +1,23 @@
 # onyxia-LS3
 
-Custom LS3 resources for Onyxia.
+Onyxia customization source for the internal deployment of Onyxia: SL³.
 
-This project is authored in TypeScript/TSX and builds to the plain custom-resource
-format consumed by Onyxia:
+What this does: 
+- Customize theme and branding as documented [here](https://docs.onyxia.sh/admin-doc/theme).  
+- Implement an alternative Home page.
 
-```txt
-docs/
-assets/
-js/
-  index.mjs
-```
-
-Runtime dependencies are still provided by Onyxia through `ctx.import(...)`. The
-build step only compiles the local TypeScript/TSX source and bundles the local
-custom-resource code.
 
 ## Development
 
-Clone this repository inside the Onyxia web directory, next to `src/` and
-`public/`:
+To run this plugin locally:  
 
 ```bash
 git clone https://github.com/InseeFrLab/onyxia
-cd onyxia/web
+cd onyxia
+# Checkout the version you are deploying the plugin against
+# Version list here: https://github.com/InseeFrLab/onyxia/releases
+git checkout v11.3.0 
+cd web
 yarn
 git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
@@ -31,53 +25,41 @@ npm install
 npm run dev
 ```
 
-`npm run dev`:
-
-- copies `onyxia-LS3/.env.local.yaml` to `web/.env.local.yaml`;
-- removes and recreates `web/public/custom-resources`;
-- builds `custom-resources/docs`, `custom-resources/assets`, and `src/main.ts`
-  into `web/public/custom-resources`;
-- watches source/static files and rebuilds on changes;
-- starts Onyxia with `npm run dev` from `web/`.
-
-The dev command intentionally refuses to run if this repository itself is located
-at `web/public/custom-resources`, because that directory is deleted before each
-dev build.
-
 ## Production Build
 
+> NOTE: This repo comes with CI Action for GitHub Action and GitLab CI that 
+> build the plugin and publish it an an artifact.
+
+<details>
+<title>Building locally</title>
 ```bash
 git clone https://github.com/InseeFrLab/onyxia
-# Checkout the version d'Onyxia you're building against.
-#git checkout v11.2.0
-cd onyxia/web
+cd onyxia
+# Checkout the version you are deploying the plugin against
+# Version list here: https://github.com/InseeFrLab/onyxia/releases
+git checkout v11.3.0 
+cd web
 yarn
 git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
 npm install
 npm run build
 ```
+</details>
 
 The build creates:
 
 ```txt
-onyxia-LS3.zip
+onyxia/web/onyxia-LS3/onyxia-LS3.zip
 ```
 
-The zip contains:
+To deploy onyxia with this plugin, 
 
-```txt
-docs/
-assets/
-js/
-  index.mjs
-```
-
-Upload `onyxia-LS3.zip` to a CDN and configure Onyxia with:
-
+`apps/onyxia/values.yaml`
 ```yaml
 onyxia:
     web:
         env:
             CUSTOM_RESOURCES: "<https url to onyxia-LS3.zip>"
+            # The rest of the values in ./env.local.yaml
 ```

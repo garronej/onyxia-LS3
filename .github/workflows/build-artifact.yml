@@ -58,10 +58,6 @@ jobs:
         run: npm run build
         working-directory: onyxia/web/onyxia-LS3
 
-      - name: Check artifact
-        run: test -f onyxia-LS3.zip
-        working-directory: onyxia/web/onyxia-LS3
-
       - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:

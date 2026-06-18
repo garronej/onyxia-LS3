@@ -183,10 +183,11 @@ export async function createHomeLS3(
                                 </>
                             }
                             icon={getIconUrlByName("ChatBubble")}
-                            link={{
-                                href: "https://www.tchap.gouv.fr/#/room/#Insee-DSI-Plateformes-Internes-Datascience-Contactez-Nous:agent.finances.tchap.gouv.fr",
-                                onClick: () => {}
-                            }}
+                            link={
+                                routes.document({
+                                    source: `${PUBLIC_URL}/custom-resources/docs/contact-support.md`
+                                }).link
+                            }
                             buttonText="Contacter le support"
                         />
                     </div>

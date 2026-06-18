@@ -19,7 +19,6 @@ build_artifact:
     - npm ci
     - npm run typecheck
     - npm run build
-    - test -f onyxia-LS3.zip
     - cp onyxia-LS3.zip "$CI_PROJECT_DIR/onyxia-LS3.zip"
   artifacts:
     name: "onyxia-LS3-$CI_COMMIT_SHORT_SHA"
