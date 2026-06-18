@@ -31,13 +31,6 @@ npm run dev
 > build the plugin and publish it an an artifact.
 
 ```bash
-git clone https://github.com/InseeFrLab/onyxia
-cd onyxia
-# Checkout the version you are deploying the plugin against
-# Version list here: https://github.com/InseeFrLab/onyxia/releases
-git checkout v11.3.0 
-cd web
-yarn
 git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
 npm install
