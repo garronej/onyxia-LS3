@@ -6,6 +6,9 @@ What this does:
 - Customize theme and branding as documented [here](https://docs.onyxia.sh/admin-doc/theme).  
 - Implement an alternative Home page.
 
+<img width="2056" height="1170" alt="Image" src="https://github.com/user-attachments/assets/4cb63663-e1f3-4eac-a6be-b3aed087a1f9" />
+
+<img width="2056" height="1170" alt="Image" src="https://github.com/user-attachments/assets/26d841c4-c390-4536-b07f-93c5be352312" />
 
 ## Development
 
