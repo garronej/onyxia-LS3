@@ -769,9 +769,7 @@ export async function createHomeLS3LaunchDialog(
 
         const { cx, classes } = useStyles_GitLabRepoView();
 
-        const [gitlabRepoUrl, setGitlabRepoUrl] = useState(
-            gitlabRepoUrlHistory.at(-1) ?? ""
-        );
+        const [gitlabRepoUrl, setGitlabRepoUrl] = useState("");
 
         const isUrlValid = useMemo(() => {
             let urlObj: URL;
