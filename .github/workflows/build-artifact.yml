@@ -31,7 +31,7 @@ jobs:
       - name: Upload zip artifact
         uses: actions/upload-artifact@v4
         with:
-          name: onyxia-LS3-${{ github.sha }}
+          name: onyxia-LS3
           path: onyxia-LS3.zip
           if-no-files-found: error
           retention-days: 30

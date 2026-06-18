@@ -8,7 +8,7 @@ build_artifact:
     - npm ci
     - npm run build
   artifacts:
-    name: "onyxia-LS3-$CI_COMMIT_SHORT_SHA"
+    name: "onyxia-LS3"
     paths:
       - onyxia-LS3.zip
     when: on_success
