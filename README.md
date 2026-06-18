@@ -26,6 +26,8 @@ git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
 npm install
 npm run dev
+# OPTIONAL: Check if the code is sound, typewise:
+npm run typecheck
 ```
 
 ## Production Build
@@ -33,27 +35,11 @@ npm run dev
 > NOTE: This repo comes with CI Action for GitHub Action and GitLab CI that 
 > build the plugin and publish it an an artifact.
 
-<details>
-<title>Building locally</title>
 ```bash
-git clone https://github.com/InseeFrLab/onyxia
-cd onyxia
-# Checkout the version you are deploying the plugin against
-# Version list here: https://github.com/InseeFrLab/onyxia/releases
-git checkout v11.3.0 
-cd web
-yarn
 git clone https://github.com/garronej/onyxia-LS3
 cd onyxia-LS3
 npm install
-npm run build
-```
-</details>
-
-The build creates:
-
-```txt
-onyxia/web/onyxia-LS3/onyxia-LS3.zip
+npm run build # Generate ./onyxia-LS3.zip
 ```
 
 To deploy onyxia with this plugin, 
