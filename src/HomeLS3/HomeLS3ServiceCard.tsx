@@ -31,7 +31,7 @@ export async function createHomeLS3ServiceCard(
                 <div>
                     <Text typo="object heading">{title}</Text>
                     <Button className={classes.button} onClick={onClick}>
-                        Demarer un {serviceName}
+                        Démarrer un {serviceName}
                     </Button>
                 </div>
             </div>
@@ -56,11 +56,11 @@ export async function createHomeLS3ServiceCard(
                 height: 120,
                 objectFit: "cover",
                 borderRadius: 3,
-                marginBottom: theme.spacing(2)
+                marginBottom: theme.spacing(3)
             },
             button: {
                 float: "inline-end",
-                marginTop: theme.spacing(2)
+                marginTop: theme.spacing(5)
             }
         }));
 

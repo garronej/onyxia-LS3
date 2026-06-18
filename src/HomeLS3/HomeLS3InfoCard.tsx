@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
-import type { Link, OnyxiaCtx } from "../OnyxiaCtx";
+import type { Link } from "type-route";
+import type { OnyxiaCtx } from "../OnyxiaCtx";
 
 export type Props = {
     className?: string;
@@ -51,11 +52,7 @@ export async function createHomeLS3InfoCard(
                 minHeight: 200,
                 padding: theme.spacing(4),
                 backgroundColor: theme.colors.useCases.surfaces.surface1,
-                borderRadius: theme.spacing(2),
-                boxShadow: theme.shadows[1],
-                "&:hover": {
-                    boxShadow: theme.shadows[6]
-                }
+                borderRadius: theme.spacing(2)
             },
             title: {
                 color: theme.colors.useCases.typography.textPrimary

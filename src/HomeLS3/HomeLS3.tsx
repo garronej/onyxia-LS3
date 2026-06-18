@@ -1,13 +1,14 @@
 import type { OnyxiaCtx } from "../OnyxiaCtx";
-import type { GitDialogOpenEvent } from "./HomeLS3GitDialog";
-import { createHomeLS3GitDialog } from "./HomeLS3GitDialog";
+import type { Props_HomeLS3LaunchDialog } from "./HomeLS3LaunchDialog";
+import type { UnpackEvt } from "evt";
+import { createHomeLS3LaunchDialog } from "./HomeLS3LaunchDialog";
 import { createHomeLS3Hero } from "./HomeLS3Hero";
 import { createHomeLS3InfoCard } from "./HomeLS3InfoCard";
 import { createHomeLS3ServiceCard } from "./HomeLS3ServiceCard";
 
-const serviceNames = ["RStudio", "VSCode"] as const;
+type ServiceName = "RStudio" | "VSCode";
 
-type ServiceName = (typeof serviceNames)[number];
+const serviceNames: ServiceName[] = ["RStudio"] as const;
 
 export async function createHomeLS3(
     ctx: OnyxiaCtx
@@ -18,6 +19,7 @@ export async function createHomeLS3(
         { routes },
         { useCoreState },
         { PUBLIC_URL },
+        tsafe,
         { Evt },
         { Deferred },
         { useConst },
@@ -26,13 +28,14 @@ export async function createHomeLS3(
         { HomeLS3Hero },
         { HomeLS3ServiceCard },
         { HomeLS3InfoCard },
-        { HomeLS3GitDialog }
+        { HomeLS3LaunchDialog }
     ] = await Promise.all([
         ctx.import("react"),
         ctx.import("tss"),
         ctx.import("ui/routes"),
         ctx.import("core"),
         ctx.import("env"),
+        ctx.import("tsafe"),
         ctx.import("evt"),
         ctx.import("evt/tools/Deferred"),
         ctx.import("powerhooks/useConst"),
@@ -41,29 +44,40 @@ export async function createHomeLS3(
         createHomeLS3Hero(ctx),
         createHomeLS3ServiceCard(ctx),
         createHomeLS3InfoCard(ctx),
-        createHomeLS3GitDialog(ctx)
+        createHomeLS3LaunchDialog(ctx)
     ]);
 
     void React;
 
+    const assert: typeof import("tsafe").assert = tsafe.assert;
+
     function HomeLS3() {
         const { classes, css, theme } = useStyles();
+
         const { user } = useCoreState("userAuthentication", "main");
+        assert(user !== undefined, "AUTHENTICATION_GLOBALLY_REQUIRED should be set to true");
 
-        if (user === undefined) {
-            throw new Error("AUTHENTICATION_GLOBALLY_REQUIRED should be set to true");
-        }
-
-        const evtGitDialogOpen = useConst(() => Evt.create<GitDialogOpenEvent>());
+        const evtGitDialogOpen = useConst(() =>
+            Evt.create<UnpackEvt<Props_HomeLS3LaunchDialog["evtOpen"]>>()
+        );
 
         const onServiceClick = async (serviceName: ServiceName) => {
             const dGitlabRepoUrl = new Deferred<string | undefined>();
 
             evtGitDialogOpen.post({
                 serviceName,
+                serviceIconUrl: `${PUBLIC_URL}/custom-resources/assets/${(() => {
+                    switch (serviceName) {
+                        case "RStudio":
+                            return "rstudio_logo.webp";
+                        case "VSCode":
+                            return "vscode_logo.png";
+                    }
+                })()}`,
                 onUserResponse: params => {
                     switch (params.response) {
                         case "cancel":
+                            // Do nothing, pending forever.
                             break;
                         case "launch with git repo":
                             dGitlabRepoUrl.resolve(params.gitlabRepoUrl);
@@ -129,9 +143,9 @@ export async function createHomeLS3(
                                 title={(() => {
                                     switch (serviceName) {
                                         case "RStudio":
-                                            return "Pour coder en R";
+                                            return "Démarrer un RStudio rapidement";
                                         case "VSCode":
-                                            return "Pour coder en Python";
+                                            return "Démarrer un VSCode (Python) rapidement";
                                     }
                                 })()}
                             />
@@ -149,7 +163,7 @@ export async function createHomeLS3(
                                 <>
                                     Prends en main la plateforme à travers
                                     <br />
-                                    un guide d&apos;utilisation simple et rapide.
+                                    un guide d'utilisation simple et rapide.
                                 </>
                             }
                             icon={getIconUrlByName("Book")}
@@ -158,28 +172,26 @@ export async function createHomeLS3(
                                     source: `${PUBLIC_URL}/custom-resources/docs/new-user.md`
                                 }).link
                             }
-                            buttonText="Démarrer le guide"
+                            buttonText="Lire le guide d'utilisation"
                         />
                         <HomeLS3InfoCard
                             title="Besoin d'aide ?"
                             body={
                                 <>
-                                    Une question, un problème ou besoin d&apos;assistance
-                                    ?
-                                    <br />
-                                    Contactez l&apos;équipe en charge de la plateforme.
+                                    Une question, un problème ou besoin d'assistance ?<br />
+                                    Contactez l'équipe en charge de la plateforme.
                                 </>
                             }
                             icon={getIconUrlByName("ChatBubble")}
                             link={{
-                                href: "https://tchap.fr",
+                                href: "https://www.tchap.gouv.fr/#/room/#Insee-DSI-Plateformes-Internes-Datascience-Contactez-Nous:agent.finances.tchap.gouv.fr",
                                 onClick: () => {}
                             }}
                             buttonText="Contacter le support"
                         />
                     </div>
                 </div>
-                <HomeLS3GitDialog evtOpen={evtGitDialogOpen} />
+                <HomeLS3LaunchDialog evtOpen={evtGitDialogOpen} />
             </>
         );
     }

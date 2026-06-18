@@ -26,14 +26,14 @@ export async function createHomeLS3Hero(
             <div className={cx(classes.root, className)}>
                 <img
                     className={classes.img}
-                    src={`${PUBLIC_URL}/custom-resources/assets/onyxia-logo-LS3-normal.png`}
+                    src={`${PUBLIC_URL}custom-resources/assets/onyxia-logo-LS3-normal.png`}
                 />
                 <div className={classes.textWrap}>
                     <div>
                         <Text typo="page heading">Bienvenu {userDisplayName}</Text>
-                        <Text className={classes.subtitle} typo="label 1">
-                            Demare ton service en quelque clicks et profite de la
-                            puissance de calcule de nos serveurs.
+                        <Text className={classes.subtitle} typo="navigation label">
+                            Demare ton service en quelque clicks et profite de la puissance de
+                            calcule de nos serveurs.
                         </Text>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ export async function createHomeLS3Hero(
                 justifyContent: "center"
             },
             subtitle: {
-                maxWidth: 450,
+                maxWidth: 500,
                 color: theme.colors.useCases.typography.textTertiary
             }
         }));
