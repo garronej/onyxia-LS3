@@ -44,7 +44,7 @@ export async function createHomeLS3InfoCard(
 
     const useStyles = tss
         .withName({ HomeLS3InfoCard })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 display: "flex",
                 flexDirection: "column",

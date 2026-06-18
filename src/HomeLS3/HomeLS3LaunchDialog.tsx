@@ -176,7 +176,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_SideDialog = tss
         .withName({ SideDialog })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 position: "fixed",
                 inset: 0,
@@ -292,7 +292,7 @@ export async function createHomeLS3LaunchDialog(
         );
     }
 
-    const useStyles_Body = tss.withName({ Body }).create(({ theme }: { theme: any }) => ({
+    const useStyles_Body = tss.withName({ Body }).create(({ theme }) => ({
         root: {
             flex: 1,
             minHeight: "100%",
@@ -390,7 +390,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_BodyEntrypoint = tss
         .withName({ BodyEntrypoint })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 display: "flex",
                 flexDirection: "column",
@@ -500,7 +500,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_BodyGitlab = tss
         .withName({ BodyGitlab })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 flex: 1,
                 minHeight: 0,
@@ -616,7 +616,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_GitLabTokenView = tss
         .withName({ GitLabTokenView })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 display: "grid",
                 gridTemplateColumns: "92px 1fr",
@@ -714,7 +714,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_GitLabUsernameView = tss
         .withName({ BodyGitlab })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 display: "flex",
                 alignItems: "center",
@@ -847,7 +847,7 @@ export async function createHomeLS3LaunchDialog(
 
     const useStyles_GitLabRepoView = tss
         .withName({ GitLabRepoView })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 flex: 1,
                 minHeight: 0,

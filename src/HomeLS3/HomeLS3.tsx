@@ -197,7 +197,7 @@ export async function createHomeLS3(
         );
     }
 
-    const useStyles = tss.withName({ HomeLS3 }).create(({ theme }: { theme: any }) => ({
+    const useStyles = tss.withName({ HomeLS3 }).create(({ theme }) => ({
         root: {
             height: "100%"
         },

@@ -43,7 +43,7 @@ export async function createHomeLS3Hero(
 
     const useStyles = tss
         .withName({ HomeLS3Hero })
-        .create(({ theme }: { theme: any }) => ({
+        .create(({ theme }) => ({
             root: {
                 display: "flex"
             },
